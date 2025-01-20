@@ -8,18 +8,25 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
+            @php
+                $route = request()->route()->getName();
+            @endphp
+
             <div class="collapse navbar-collapse" id="navbar">
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a href="" class="nav-link">Accueil</a>
+                <ul class="navbar-nav p-2">
+                    <li class="nav-item"><a
+                            href="{{ route('property.show', [
+                                'slug' => $property->getSlug(),
+                                'property' => $property,
+                            ]) }}"
+                            @class(['nav-link', 'active' => str_contains($route, 'property.')])>Accueil</a>
                     </li>
                     <li class="nav-item"><a href="" class="nav-link">A&nbsp;Propos</a>
                     </li>
                     <li class="nav-item"><a href="" class="nav-link">Nos&nbsp;Maisons</a>
                     </li>
                     <li class="nav-item"><a href="" class="nav-link">Contact</a></li>
-                    @php
-                        $route = request()->route()->getName();
-                    @endphp
+
                     <li class="nav-item dropdown">
                         <a @class([
                             'nav-link dropdown-toggle',
