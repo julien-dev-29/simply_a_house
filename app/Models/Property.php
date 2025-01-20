@@ -58,4 +58,13 @@ class Property extends Model
         'postal_code',
         'sold'
     ];
+
+    /**
+     * Summary of options
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function options()
+    {
+        return $this->belongsToMany(Option::class);
+    }
 }

@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\PropertyFormRequest;
+use App\Models\Option;
 use App\Models\Property;
-use Illuminate\Http\Request;
+
 class PropertyController extends Controller
 {
     /**
@@ -23,8 +24,19 @@ class PropertyController extends Controller
      */
     public function create()
     {
+        $property = new Property();
+        $property->fill([
+            'surface' => 40,
+            'rooms' => 5,
+            'bedrooms' => 2,
+            'floor' => 0,
+            'city' => 'Quimper',
+            'postal_code' => 29000,
+            'sold' => false
+        ]);
         return view('admin.property.create', [
-            'property' => new Property()
+            'property' => $property,
+            'options' => Option::pluck('name', 'id')
         ]);
     }
 
@@ -34,6 +46,7 @@ class PropertyController extends Controller
     public function store(PropertyFormRequest $request)
     {
         $property = Property::create($request->validated());
+        $property->options()->sync($request->validated('options'));
         return to_route('admin.property.index')->with('success', 'le bien a été créé avec succes');
     }
 
@@ -43,7 +56,8 @@ class PropertyController extends Controller
     public function edit(Property $property)
     {
         return view('admin.property.create', [
-            'property' => $property
+            'property' => $property,
+            'options' => Option::pluck('name', 'id')
         ]);
     }
 
@@ -52,6 +66,7 @@ class PropertyController extends Controller
      */
     public function update(PropertyFormRequest $request, Property $property)
     {
+        $property->options()->sync($request->validated('options'));
         $property->update($request->validated());
         return to_route('admin.property.index')->with('success', 'Le bien a été modifié avec succes');
     }
