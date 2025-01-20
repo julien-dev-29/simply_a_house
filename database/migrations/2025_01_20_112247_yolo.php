@@ -13,7 +13,7 @@ return new class extends Migration {
         Schema::create('properties', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->longText('desciption');
+            $table->longText('description');
             $table->integer('surface');
             $table->integer('rooms');
             $table->integer('bedrooms');
@@ -32,6 +32,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('properties');
+        
     }
 };

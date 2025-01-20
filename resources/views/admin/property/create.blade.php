@@ -1,6 +1,6 @@
 @extends('admin.admin')
 
-@section('title', $property->exists() ? 'Editer Un Bien' : 'Créer Un Bien')
+@section('title', $property->exists ? 'Editer Un Bien' : 'Créer Un Bien')
 
 @section('content')
 
@@ -8,11 +8,10 @@
     <h1>@yield('title')</h1>
 
     <form class="vstack gap-2"
-        action="{{ route($property->exists() ? 'admin.property.update' : 'admin.property.store', $property) }}"
-        method="POST">
+        action="{{ route($property->exists ? 'admin.property.update' : 'admin.property.store', $property) }}" method="POST">
 
         @csrf
-        @method($property->exists() ? 'PUT' : 'POST')
+        @method($property->exists ? 'PUT' : 'POST')
 
         <div class="row">
             @include('shared.input', [
@@ -50,17 +49,17 @@
         <div class="row">
             @include('shared.input', [
                 'type' => 'number',
-                'label' => 'Chambres',
+                'label' => 'Pièces',
                 'class' => 'col',
                 'name' => 'rooms',
-                'value' => $property->address,
+                'value' => $property->rooms,
             ])
             @include('shared.input', [
                 'type' => 'number',
-                'label' => 'Salle De Bains',
+                'label' => 'Chambres',
                 'class' => 'col',
                 'name' => 'bedrooms',
-                'value' => $property->city,
+                'value' => $property->bedrooms,
             ])
             @include('shared.input', [
                 'type' => 'number',
@@ -101,10 +100,11 @@
 
 
         <button class="btn btn-primary mt-3">
-            @if ($property->exists())
+            @if ($property->exists)
                 Modifier
+            @else
+                Créer
             @endif
-            Créer
         </button>
     </form>
 
