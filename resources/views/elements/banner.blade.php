@@ -35,7 +35,7 @@
 </div>
 
 <header class="container-fluid">
-    <div class="border row d-none d-md-flex justify-content-end">
+    <div class="row d-none d-md-flex bg-tertiary justify-content-end">
 
         <div class="col-2 d-flex justify-content-around align-items-center">
             <a class="d-flex justify-content-center py-1" href="https://facebook.com">
@@ -60,9 +60,19 @@
         </div>
         <div class="col-2 d-flex justify-content-center py-1">
             <!-- Button trigger modal -->
-            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                <i class="bi bi-house-door-fill"></i>&nbsp;Se&nbsp;Connecter
-            </button>
+            @if (Auth::check())
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    @method('delete')
+                    <button class="btn btn-info text-white"><i class="bi bi-house-door-fill"></i> Se
+                        déconnecter</button>
+                </form>
+            @else
+                <form action="{{ route('login') }}" method="GET">
+                    @csrf
+                    <button class="btn btn-info text-white"><i class="bi bi-house-door-fill"></i> Se connecter</button>
+                </form>
+            @endif
 
             <!-- Modal -->
             <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"

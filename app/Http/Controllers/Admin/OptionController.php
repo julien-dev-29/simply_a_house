@@ -34,7 +34,7 @@ class OptionController extends Controller
     public function store(OptionFormRequest $request)
     {
         $Option = Option::create($request->validated());
-        return to_route('admin.option.index')->with('success', 'L\'option a été créé avec succes');
+        return to_route('admin.option.index')->with('success', 'L\'option a été créée avec succès');
     }
 
     /**
@@ -53,7 +53,7 @@ class OptionController extends Controller
     public function update(OptionFormRequest $request, Option $Option)
     {
         $Option->update($request->validated());
-        return to_route('admin.option.index')->with('success', 'L\'option a été modifié avec succes');
+        return to_route('admin.option.index')->with('success', 'L\'option a été modifiée avec succès');
     }
 
     /**
@@ -62,6 +62,6 @@ class OptionController extends Controller
     public function destroy(Option $Option)
     {
         $Option->delete();
-        return to_route('admin.option.index')->with('success', 'L\'option a été supprimé avec succes');
+        return to_route('admin.option.index')->with('success', 'L\'option a été supprimée avec succès');
     }
 }

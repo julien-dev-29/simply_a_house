@@ -15,9 +15,19 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $properties = Property::orderBy('created_at', 'desc')->limit(4)->get();
+        $properties = Property::orderBy('created_at', 'desc')->limit(3)->get();
         return view('home', [
             'properties' => $properties
         ]);
+    }
+
+    public function about()
+    {
+        return view('about');
+    }
+
+    public function contact()
+    {
+        return view('contact');
     }
 }

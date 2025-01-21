@@ -13,42 +13,40 @@
             @endphp
 
             <div class="collapse navbar-collapse" id="navbar">
-                <ul class="navbar-nav p-2">
-                    <li class="nav-item"><a
-                            href="{{ route('property.show', [
-                                'slug' => $property->getSlug(),
-                                'property' => $property,
-                            ]) }}"
-                            @class(['nav-link', 'active' => str_contains($route, 'property.')])>Accueil</a>
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a href="{{ route('home.index') }}" @class(['nav-link', 'active' => str_contains($route, 'home.')])>Accueil</a>
                     </li>
-                    <li class="nav-item"><a href="" class="nav-link">A&nbsp;Propos</a>
+                    <li class="nav-item"><a href="{{ route('about') }}" class="nav-link">A&nbsp;Propos</a>
                     </li>
-                    <li class="nav-item"><a href="" class="nav-link">Nos&nbsp;Maisons</a>
+                    <li class="nav-item"><a href="{{ route('properties.index') }}"
+                            @class(['nav-link', 'active' => str_contains($route, 'properties.')])>Nos&nbsp;Maisons</a>
                     </li>
-                    <li class="nav-item"><a href="" class="nav-link">Contact</a></li>
-
-                    <li class="nav-item dropdown">
-                        <a @class([
-                            'nav-link dropdown-toggle',
-                            'active' =>
-                                str_contains($route, 'property.') || str_contains($route, 'option.'),
-                        ]) href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Admin
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a @class([
-                                'dropdown-item',
-                                'active' => str_contains($route, 'property.'),
-                            ]) href="{{ route('admin.property.index') }}">Gérer les
-                                    biens</a></li>
-                            <li><a @class(['dropdown-item', 'active' => str_contains($route, 'option.')]) href="{{ route('admin.option.index') }}">Gérer les
-                                    options</a></li>
-                        </ul>
-                    </li>
-                </ul>
+                    <li class="nav-item"><a href="{{ route(name: 'contact') }}" class="nav-link">Contact</a></li>
+                    @auth
+                        <li class="nav-item dropdown">
+                            <a @class([
+                                'nav-link dropdown-toggle',
+                                'active' =>
+                                    str_contains($route, 'property.') || str_contains($route, 'option.'),
+                            ]) href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Admin
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a @class([
+                                    'dropdown-item',
+                                    'active' => str_contains($route, 'property.'),
+                                ]) href="{{ route('admin.property.index') }}">Gérer les
+                                        biens</a></li>
+                                <li><a @class(['dropdown-item', 'active' => str_contains($route, 'option.')]) href="{{ route('admin.option.index') }}">Gérer les
+                                        options</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                @endauth
             </div>
-        </nav>
     </div>
+    </nav>
+</div>
 </div>
 </header>
