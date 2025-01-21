@@ -69,8 +69,46 @@ class Property extends Model
         return $this->belongsToMany(Option::class);
     }
 
+    /**
+     * Summary of getSlug
+     * @return string
+     */
     public function getSlug()
     {
         return Str::slug($this->title);
+    }
+
+    /**
+     * Summary of pictures
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function pictures()
+    {
+        return $this->hasMany(Picture::class);
+    }
+    /**
+     * Summary of attachFiles
+     * @param UploadedFile[] $files
+     */
+    public function attachFiles(array $files)
+    {
+        $pictures = [];
+        foreach ($files as $file) {
+            if ($file->getError()) {
+                continue;
+            }
+            $filename = $file->store('properties/' . $this->id, 'public');
+            $pictures[] = [
+                'filename' => $filename
+            ];
+        }
+        if (count($pictures) > 0) {
+            $this->pictures()->createMany($pictures);
+        }
+    }
+
+    public function getPicture()
+    {
+        return $this->pictures[0] ?? null;
     }
 }
