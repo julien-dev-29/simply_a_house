@@ -16,12 +16,13 @@
                 <ul class="navbar-nav">
                     <li class="nav-item"><a href="{{ route('home.index') }}" @class(['nav-link', 'active' => str_contains($route, 'home.')])>Accueil</a>
                     </li>
-                    <li class="nav-item"><a href="{{ route('about') }}" class="nav-link">A&nbsp;Propos</a>
+                    <li class="nav-item"><a href="{{ route('about') }}" @class(['nav-link', 'active' => str_contains($route, 'about')])>A&nbsp;Propos</a>
                     </li>
                     <li class="nav-item"><a href="{{ route('properties.index') }}"
                             @class(['nav-link', 'active' => str_contains($route, 'properties.')])>Nos&nbsp;Maisons</a>
                     </li>
-                    <li class="nav-item"><a href="{{ route(name: 'contact') }}" class="nav-link">Contact</a></li>
+                    <li class="nav-item"><a href="{{ route(name: 'contact') }}" @class(['nav-link', 'active' => str_contains($route, 'contact')])>Contact</a>
+                    </li>
                     @auth
                         <li class="nav-item dropdown">
                             <a @class([

@@ -10,7 +10,7 @@
         rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/tom-select@2.4.1/dist/css/tom-select.bootstrap5.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/tom-select@2.4.1/dist/js/tom-select.complete.min.js"></script>
-
+    <script src="https://unpkg.com/htmx.org@2.0.4"></script>
     <title>@yield('title') | Administration</title>
 </head>
 

@@ -1,8 +1,8 @@
-<div class="card h-100 shadow-sm">
+<div class="card shadow-sm">
     @if ($property->getPicture())
         <img src="{{ $property->getPicture()->getImageUrl() }}" alt="" class="w-100">
     @else
-        <img src="empty" alt="" class="w-100">
+        <img src="/image.png" alt="" class="w-100">
     @endif
     <div class="card-body">
         <h5 class="card-title fw-bold"><a

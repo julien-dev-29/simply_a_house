@@ -64,13 +64,14 @@
                 <form action="{{ route('logout') }}" method="POST">
                     @csrf
                     @method('delete')
-                    <button class="btn btn-info text-white"><i class="bi bi-house-door-fill"></i> Se
+                    <button class="btn btn-danger text-white"><i class="bi bi-house-door-fill"></i> Se
                         déconnecter</button>
                 </form>
             @else
                 <form action="{{ route('login') }}" method="GET">
                     @csrf
-                    <button class="btn btn-info text-white"><i class="bi bi-house-door-fill"></i> Se connecter</button>
+                    <button class="btn btn-info text-white"><i class="bi bi-house-door-fill"></i> Se
+                        connecter</button>
                 </form>
             @endif
 

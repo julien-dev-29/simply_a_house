@@ -55,7 +55,7 @@
                                     <p class="fw-normal fst-italic ps-3">Garantie de livraison à prix et délai convenu</p>
                                 </div>
                                 <div class="col-md-6 d-none d-md-flex justify-content-center">
-                                    <img src="/assets/images-simply/label.jpg" alt="photo du label">
+                                    <img src="{{ asset('storage/assets/images/label.jpg') }}" alt="photo du label">
                                 </div>
                             </div>
                         </div>

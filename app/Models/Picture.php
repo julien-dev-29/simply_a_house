@@ -14,8 +14,24 @@ class Picture extends Model
         'filename'
     ];
 
+    /**
+     * Summary of getImageUrl
+     * @return string
+     */
     public function getImageUrl(): string
     {
         return Storage::disk('public')->url($this->filename);
+    }
+    
+    /**
+     * Summary of booted
+     * @return void
+     */
+    protected static function booted(): void
+    {
+        static::deleting(function (Picture $picture) {
+            Storage::disk('public')
+                ->delete($picture->filename);
+        });
     }
 }

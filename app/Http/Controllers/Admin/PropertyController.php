@@ -47,7 +47,9 @@ class PropertyController extends Controller
     {
         $property = Property::create($request->validated());
         $property->options()->sync($request->validated('options'));
-        $property->attachFiles($request->validated('pictures'));
+        if ($request->has('pictures')) {
+            $property->attachFiles($request->validated('pictures'));
+        }
         return to_route('admin.property.index')->with('success', 'le bien a été créé avec succes');
     }
 
@@ -69,8 +71,9 @@ class PropertyController extends Controller
     {
         $property->update($request->validated());
         $property->options()->sync($request->validated('options'));
-        $property->attachFiles($request->validated('pictures'));
-
+        if ($request->has('pictures')) {
+            $property->attachFiles($request->validated('pictures'));
+        }
         return to_route('admin.property.index')->with('success', 'Le bien a été modifié avec succes');
     }
 

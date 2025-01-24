@@ -19,8 +19,8 @@
                             des
                             clés🗝️.</p>
                     </div>
-                    <div class="d-none d-md-block col mx-5"><img src="" width="250px" style="float: right;"
-                            alt="photo de bienvenue">
+                    <div class="d-none d-md-block col mx-5"><img src="{{ asset('storage/assets/images/terrasse.png') }}"
+                            width="250px" style="float: right;" alt="photo de bienvenue">
                     </div>
                 </div>
             </div>
@@ -38,6 +38,10 @@
                             ])
                         </div>
                     @endforeach
+                </div>
+                <div class="row text-center pt3">
+                    <div class="col"><a href="{{ route('properties.index') }}" class="btn btn-primary">En voir
+                            +</a></div>
                 </div>
             </div>
         </section>

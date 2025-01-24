@@ -116,7 +116,12 @@
                     'multiple' => true,
                 ])
                 @foreach ($property->pictures as $picture)
-                    <img src="{{ $picture->getImageUrl() }}" alt="" class="w-100 d-block">
+                    <div id="picture{{ $picture->id }}" class="position-relative">
+                        <img src="{{ $picture->getImageUrl() }}" alt="" class="w-100 d-block">
+                        <button type="button" class="btn btn-danger position-absolute bottom-0 w-100 start-0"
+                            hx-delete="{{ route('admin.picture.destroy', ['picture' => $picture->id]) }}"
+                            hx-target="#picture{{ $picture->id }}" hx-swap="delete">Supprimer</button>
+                    </div>
                 @endforeach
             </div>
         </div>
