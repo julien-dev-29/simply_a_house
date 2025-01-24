@@ -8,7 +8,7 @@
 <footer class="container-fluid bg-dark mt-5">
     <div class="row">
         <div class="col footer-content p-0 d-flex justify-content-center flex-wrap">
-            <div class="row footer-content-block">
+            <div class="row">
 
                 <div
                     class="col-12 text-white col-md-3 d-flex flex-column align-items-center justify-content-center my-3 order-md-1">

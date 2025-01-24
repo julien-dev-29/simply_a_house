@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\Admin\OptionController;
 use App\Http\Controllers\HomeController;
@@ -33,6 +34,8 @@ Route::get('/les-maisons/{slug}-{property}', [PropertyController::class, 'show']
 Route::get('/login', [AuthController::class, 'login'])->middleware('guest')->name('login');
 Route::post('/login', [AuthController::class, 'doLogin']);
 Route::delete('logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
+
+Route::get('images/{path}', [ImageController::class, 'show'])->where('path', '.*');
 
 /** */
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () use ($idRegex) {

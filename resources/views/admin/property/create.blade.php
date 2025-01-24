@@ -15,7 +15,7 @@
         @method($property->exists ? 'PUT' : 'POST')
 
         <div class="row">
-            <div class="col" style="flex: 100">
+            <div class="col vstack gap-2" style="flex: 100">
                 <div class="row">
                     @include('shared.input', [
                         'class' => 'col',
@@ -120,20 +120,24 @@
                         <img src="{{ $picture->getImageUrl() }}" alt="" class="w-100 d-block">
                         <button type="button" class="btn btn-danger position-absolute bottom-0 w-100 start-0"
                             hx-delete="{{ route('admin.picture.destroy', ['picture' => $picture->id]) }}"
-                            hx-target="#picture{{ $picture->id }}" hx-swap="delete">Supprimer</button>
+                            hx-target="#picture{{ $picture->id }}" hx-swap="delete"><span
+                                class="htmx-indicator spinner-border spinner-border-sm" role="status"
+                                aria-hidden="true"></span>Supprimer</button>
+
                     </div>
                 @endforeach
             </div>
         </div>
 
-
-        <button class="btn btn-primary mt-3">
-            @if ($property->exists)
-                Modifier
-            @else
-                Créer
-            @endif
-        </button>
+        <div>
+            <button class="btn btn-primary mt-3">
+                @if ($property->exists)
+                    Modifier
+                @else
+                    Créer
+                @endif
+            </button>
+        </div>
     </form>
 
 @endsection

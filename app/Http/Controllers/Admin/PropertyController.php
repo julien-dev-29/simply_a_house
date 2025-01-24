@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\PropertyFormRequest;
 use App\Models\Option;
+use App\Models\Picture;
 use App\Models\Property;
 
 class PropertyController extends Controller
@@ -82,7 +83,8 @@ class PropertyController extends Controller
      */
     public function destroy(Property $property)
     {
-        $property->delete();
+        Picture::destroy($property->pictures()->pluck('id'));
+        $property->delete(); 
         return to_route('admin.property.index')->with('success', 'le bien a été supprimé avec succes');
     }
 }
