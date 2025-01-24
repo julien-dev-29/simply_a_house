@@ -24,7 +24,7 @@ class Picture extends Model
         if ($width === null) {
             return Storage::disk('public')->url($this->filename);
         }
-        $urlBuilder = UrlBuilderFactory::create('/images/');
+        $urlBuilder = UrlBuilderFactory::create('/images/', config('glide.key'));
         return $urlBuilder->getUrl($this->filename, [
             'w' => $width,
             'h' => $height,

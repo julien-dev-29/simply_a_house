@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use League\Glide\Responses\LaravelResponseFactory;
 use League\Glide\ServerFactory;
+use League\Glide\Signatures\SignatureFactory;
 use Storage;
 
 class ImageController extends Controller
 {
     public function show(Request $request, string $path)
     {
+        SignatureFactory::create(config('glide.key'))->validateRequest($request->path(), $request->all());
         $server = ServerFactory::create([
             'response' => new LaravelResponseFactory($request),
             'source' => Storage::disk('public')->getDriver(),

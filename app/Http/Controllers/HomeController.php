@@ -15,7 +15,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $properties = Property::orderBy('created_at', 'desc')->limit(3)->get();
+        $properties = Property::with('pictures')->orderBy('created_at', 'desc')->limit(3)->get();
         return view('home', [
             'properties' => $properties
         ]);
